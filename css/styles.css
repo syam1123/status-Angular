@@ -11,6 +11,10 @@ li{
     color: rgb(32, 20, 22);
     margin-top: 50px;
     border-radius: 5px;
+    transform: rotate(-180deg);
+}
+ul{
+    transform: rotate(180deg);
 }
 li:first-child{
     background-color: white;
