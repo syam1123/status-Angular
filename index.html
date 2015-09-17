@@ -18,7 +18,7 @@
                 <h2>Status Report</h2>
                 <form ng-submit="status.addDetails()" id="statForm">
                 <span>
-                    <input type="date" ng-model="status.date" id="statusDate" required placeholder="yyyy-MM-dd" max="{{status.date.max}}" min="{{status.date.min}}">
+                    <input type="date" max="{{status.date.max}}" min="{{status.date.min}} ng-model="status.date" id="statusDate" required  ">
                     <select class="projects" ng-model="status.project" required>
                         <option ng-repeat="project in status.projects">
                             {{project}}
@@ -29,8 +29,8 @@
                             {{activity}}
                         </option>
                     </select>
-                    <input type="number" ng-model="status.hour" required class="time" max="{{status.times.hourMax}}">
-                    <input type="number" ng-model="status.min" required class="time" max="{{status.times.minMax}}" step="{{status.times.minStep}}">
+                    <input type="number" ng-model="status.hour" required class="time" min="0" max="{{status.times.hourMax}}">
+                    <input type="number" ng-model="status.min" required class="time" min="0" max="{{status.times.minMax}}" step="{{status.times.minStep}}">
                 </span>
 
                     <div>
