@@ -18,7 +18,7 @@
                 <h2>Status Report</h2>
                 <form ng-submit="status.addDetails()" id="statForm">
                 <span>
-                    <input type="date" ng-model="status.date" required placeholder="yyyy-MM-dd" max="{{status.date.max}}" min="{{status.date.min}}">
+                    <input type="date" ng-model="status.date" id="statusDate" required placeholder="yyyy-MM-dd" max="{{status.date.max}}" min="{{status.date.min}}">
                     <select class="projects" ng-model="status.project" required>
                         <option ng-repeat="project in status.projects">
                             {{project}}

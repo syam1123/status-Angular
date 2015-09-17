@@ -39,14 +39,13 @@ angular.module('DailyStatus',[])
 
      status.addDetails = function(){
          status.display1 = true;
-         status.statusReport.push({date1:status.date,
+         status.statusReport.push({date1:$('#statusDate').val(),
                                  project : status.project,
                                  activity : status.activity,
                                  workHour : status.hour+'h',
                                  workMin : status.min+'min.',
                                  details : status.details
                              });
-                             console.log(status.activity);
         var newarray = [];
         for(i=0;i<status.statusReport.length;i++){
             newarray.push(status.statusReport[i]);
