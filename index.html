@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Status Report</title>
+        <!-- // <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script> -->
+
+        <!-- <script src="js/underscore.js" charset="utf-8"></script>-->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="js/status.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <div class="container" ng-app="DailyStatus">
+            <div ng-controller="DailyStatusReport as status">
+                <h2>Status Report</h2>
+                <form ng-submit="status.addDetails()" id="statForm">
+                <span>
+                    <input type="date" ng-model="status.date" required placeholder="yyyy-MM-dd" max="{{status.date.max}}" min="{{status.date.min}}">
+                    <select class="projects" ng-model="status.project" required>
+                        <option ng-repeat="project in status.projects">
+                            {{project}}
+                        </option>
+                    </select>
+                    <select class="activity" ng-model="status.activity" required>
+                        <option ng-repeat="activity in status.activities">
+                            {{activity}}
+                        </option>
+                    </select>
+                    <input type="number" ng-model="status.hour" required class="time" max="{{status.times.hourMax}}">
+                    <input type="number" ng-model="status.min" required class="time" max="{{status.times.minMax}}" step="{{status.times.minStep}}">
+                </span>
+
+                    <div>
+                        <textarea class="details" rows="5" ng-model="status.details"placeholder="Please enter the details" required></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-success" value="submit">
+                </form>
+                <div class="results">
+                    <ul class="stat-{{status.display1}}">
+                        <li ng-repeat="report in status.statusReport">
+                            <p>{{report.date1}}</p>
+                            <span class="project">{{report.project}}</span>
+                            <span>{{report.activity}}</span>
+                            <br>
+                            <span>{{report.workHour}}</span>
+                            <span>{{report.workMin}}</span>
+                            <p class="content">
+                                {{report.details}}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
