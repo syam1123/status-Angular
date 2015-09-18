@@ -20,7 +20,7 @@
                 <div class="form">
                     <form ng-submit="status.addDetails()" id="statForm">
                     <span>
-                        <input type="date" max="{{status.statusList.date.max}}" min="{{status.statusList.date.min}}" ng-model="status.date" id="statusDate" required  >
+                        <input type="date" placeholder="yyyy-mm-dd" max="{{status.statusList.date.max}}" min="{{status.statusList.date.min}}" ng-model="status.date" id="statusDate" required  >
                         <select class="projects" ng-model="status.project" required ng-options = "project as project.name for project in status.statusList.projects">
                         </select>
                         <select class="activity" ng-model="status.activity" required
@@ -43,6 +43,7 @@
                         <li ng-repeat="report in status.statusList.report">
                             <div class="row">
                                 <div class="col2">
+                                    <p>end-of-day</p>
                                     <p>{{report.date1}}</p>
                                     <span>{{report.workHour}}</span>
                                     <span>{{report.workMin}}</span>
