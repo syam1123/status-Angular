@@ -1,0 +1,73 @@
+{
+    "report": [
+        {
+            "date1": "2015-09-16",
+            "project": "Project 3",
+            "activity": "Activity 1",
+            "workHour": "5h",
+            "workMin": "34min",
+            "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        }
+    ],
+    "date": {
+        "min": "2015-09-10",
+        "max": "2015-09-17"
+    },
+    "times": {
+        "hourMax": "24",
+        "minMax": "45",
+        "minStep": "15"
+    },
+    "projects": [
+        {
+            "id": "01",
+            "name": "N/A"
+        },
+        {
+            "id": "02",
+            "name": "project1"
+        },
+        {
+            "id": "03",
+            "name": "project2"
+        },
+        {
+            "id": "04",
+            "name": "project3"
+        },
+        {
+            "id": "05",
+            "name": "project4"
+        },
+        {
+            "id": "06",
+            "name": "project5"
+        }
+    ],
+    "activities": [
+        {
+            "id": "01",
+            "name": "N/A"
+        },
+        {
+            "id": "02",
+            "name": "Activity1"
+        },
+        {
+            "id": "03",
+            "name": "Activity2"
+        },
+        {
+            "id": "04",
+            "name": "Activity3"
+        },
+        {
+            "id": "05",
+            "name": "Activity4"
+        },
+        {
+            "id": "06",
+            "name": "Activity5"
+        }
+    ]
+}
