@@ -27,8 +27,8 @@
                                 ng-options = "activity as activity.name for activity in status.statusList.activities">
 
                         </select>
-                        <input type="number" ng-model="status.hour" required class="time" min="0" max="{{status.statusList.times.hourMax}}">
-                        <input type="number" ng-model="status.min" required class="time" min="0" max="{{status.statusList.times.minMax}}" step="{{status.statusList.times.minStep}}">
+                        <input type="number" ng-model="status.hour" placeholder="Hour" required class="time" min="0" max="{{status.statusList.times.hourMax}}">
+                        <input type="number" ng-model="status.min"placeholder="Mins" required class="time" min="0" max="{{status.statusList.times.minMax}}" step="{{status.statusList.times.minStep}}">
                     </span>
 
                         <div>
