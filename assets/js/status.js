@@ -9,12 +9,14 @@ angular.module('DailyStatus',[])
     $.getJSON("apis/allData.json", function(data) {
         status.statusList = data;
     });
-
+/*
+* Create the date picker as a selecct box.
+* The Dates Should include the last 7 dys from today.
+*/
     status.date = [];
-
-    var curr = new Date(); // get current date
-    var first = curr.getDate(); // First day is the day of the month - the day of the week
-    var startDate = new Date(curr.setDate(first));
+    var today = new Date();
+    var first = today.getDate();
+    var startDate = new Date(today.setDate(first));
     startDate = "" + startDate.getFullYear() +"-" +(startDate.getMonth() + 1) + "-" + startDate.getDate() ;
 
     var i = 0;
@@ -22,7 +24,7 @@ angular.module('DailyStatus',[])
     for(i=0; i<7;i++)
     {
     var last = first-i;
-    var endDate = new Date(curr.setDate(last));
+    var endDate = new Date(today.setDate(last));
     endDate = endDate.getFullYear() +"-" +(endDate.getMonth() + 1) + "-" + endDate.getDate();
 
     status.date.push({
@@ -31,7 +33,10 @@ angular.module('DailyStatus',[])
     });
     }
     status.hour = [];
-   //Creating hours
+/*
+* The hour should be a select box.
+* The minutes are having a step of 15.
+*/
    var i =1;
    for(i=1; i<=24; i++)
        {
@@ -39,15 +44,14 @@ angular.module('DailyStatus',[])
        }
 
    status.mins = [];
-   //Creating hours
    var j =1;
    for(j=1; j<4; j++)
        {
            status.mins.push({id: j, value: j*15});
        }
-    /*
-    *Add the components into an array
-    */
+/*
+*Add the components into an array
+*/
      status.addDetails = function(){
          status.display1 = true;
          status.statusList.report.push({date1:status.date1,
