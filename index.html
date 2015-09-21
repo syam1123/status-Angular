@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
     <head>
         <meta charset="utf-8">
         <title>Status Report</title>
@@ -8,31 +8,43 @@
         <!-- <script src="js/underscore.js" charset="utf-8"></script>-->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">
         <link rel="stylesheet" href="assets/css/styles.css">
+        <script src="assets/js/script.js" charset="utf-8"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-        <script src="apis/allData.json" charset="utf-8"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="assets/js/status.js" charset="utf-8"></script>
     </head>
-    <body>
+    <body >
         <div class="container report" ng-app="DailyStatus">
             <div ng-controller="DailyStatusReport as status">
+                <div id="loader-wrapper">
+                  <div class="preloader"></div>
+                </div>
                 <h2>Status Report</h2>
                 <div class="form">
-                    <form ng-submit="status.addDetails()" id="statForm">
+                    <form ng-submit="addDetails()" id="statForm">
                     <span>
-                        <input type="date" max="{{status.statusList.date.max}}" min="{{status.statusList.date.min}}" ng-model="status.date" id="statusDate" required  >
-                        <select class="projects" ng-model="status.project" required ng-options = "project as project.name for project in status.statusList.projects">
+                        <select class="" ng-model="date1">
+                            <option value="" disabled selected>Select date</option>
+                            <option  ng-repeat = "date in date">{{date.title}}</option>
                         </select>
-                        <select class="activity" ng-model="status.activity" required
-                                ng-options = "activity as activity.name for activity in status.statusList.activities">
+                        <select class="projects" ng-model="project" required ng-options = "project as project.name for project in statusList.projects">
+                        </select>
+                        <select class="activity" ng-model="activity" required
+                                ng-options = "activity as activity.name for activity in statusList.activities">
 
                         </select>
-                        <input type="number" ng-model="status.hour" placeholder="Hour" required class="time" min="0" max="{{status.statusList.times.hourMax}}">
-                        <input type="number" ng-model="status.min"placeholder="Mins" required class="time" min="0" max="{{status.statusList.times.minMax}}" step="{{status.statusList.times.minStep}}">
+                        <select class="time" ng-model = "hourWork">
+                            <option value="" disabled selected>Hour</option>
+                            <option  ng-repeat = "hour in hour">{{hour.value}}</option>
+                        </select>
+                        <select class="time" ng-model = "minsWork">
+                            <option value="" disabled selected>Mins</option>
+                            <option  ng-repeat = "min in mins">{{min.value}}</option>
+                        </select>
                     </span>
 
                         <div>
-                            <textarea class="details" rows="5" ng-model="status.details"placeholder="Please enter the details" required></textarea>
+                            <textarea class="details" rows="5" ng-model="details"placeholder="Please enter the details" required></textarea>
                         </div>
                         <input type="submit" class="btn btn-success" value="submit">
                     </form>
@@ -40,9 +52,10 @@
                 <div class="results">
                     <h2>My History</h2>
                     <ul class="">
-                        <li ng-repeat="report in status.statusList.report">
+                        <li ng-repeat="report in statusList.report">
                             <div class="row">
                                 <div class="col2">
+                                    <p>end-of-day</p>
                                     <p>{{report.date1}}</p>
                                     <span>{{report.workHour}}</span>
                                     <span>{{report.workMin}}</span>
