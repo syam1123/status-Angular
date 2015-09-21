@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
     <head>
         <meta charset="utf-8">
         <title>Status Report</title>
@@ -8,14 +8,17 @@
         <!-- <script src="js/underscore.js" charset="utf-8"></script>-->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">
         <link rel="stylesheet" href="assets/css/styles.css">
+        <script src="assets/js/script.js" charset="utf-8"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-        <script src="apis/allData.json" charset="utf-8"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="assets/js/status.js" charset="utf-8"></script>
     </head>
-    <body>
+    <body >
         <div class="container report" ng-app="DailyStatus">
             <div ng-controller="DailyStatusReport as status">
+                <div id="loader-wrapper">
+                  <div class="preloader"></div>
+                </div>
                 <h2>Status Report</h2>
                 <div class="form">
                     <form ng-submit="addDetails()" id="statForm">

@@ -1,19 +1,36 @@
-angular.module('DailyStatus',[])
- .controller('DailyStatusReport',function(){
-     var status = this;
+var statusReport = angular.module('DailyStatus',[]);
+statusReport.service('getStatusHistory', function($http, $q) {
+   return {
+     getHistory: function() {
+       var deferred = $q.defer();
+       $http.get('apis/allData.json').success(function(data) {
+          deferred.resolve(data);
+          myfunction();
+       }).error(function(){
+          deferred.reject();
+       });
+       return deferred.promise;
+     }
+   }
+});
+ statusReport.controller('DailyStatusReport',function($scope, getStatusHistory){
+     //var status = this;
+     var a;
+
 /*
 * fetch the api.
 * store the json object into a variable.
 */
-
-    $.getJSON("apis/allData.json", function(data) {
-        status.statusList = data;
+getStatusHistory.getHistory().then(
+        function(data) {
+            $scope.statusList = data;
     });
+
 /*
-* Create the date picker as a selecct box.
+* Create the date picker as a select box.
 * The Dates Should include the last 7 dys from today.
 */
-    status.date = [];
+    $scope.date = [];
     var today = new Date();
     var first = today.getDate();
     var startDate = new Date(today.setDate(first));
@@ -23,16 +40,17 @@ angular.module('DailyStatus',[])
 
     for(i=0; i<7;i++)
     {
-    var last = first-i;
-    var endDate = new Date(today.setDate(last));
-    endDate = endDate.getFullYear() +"-" +(endDate.getMonth() + 1) + "-" + endDate.getDate();
+        var last = first-i;
+        var endDate = new Date(today.setDate(last));
+        endDate = endDate.getFullYear() +"-" +(endDate.getMonth() + 1) + "-" + endDate.getDate();
 
-    status.date.push({
-      id: i,
-      title: endDate
-    });
+        $scope.date.push({
+          id: i,
+          title: endDate
+        });
     }
-    status.hour = [];
+    console.log($scope.date);
+    $scope.hour = [];
 /*
 * The hour should be a select box.
 * The minutes are having a step of 15.
@@ -40,34 +58,35 @@ angular.module('DailyStatus',[])
    var i =1;
    for(i=1; i<=24; i++)
        {
-           status.hour.push({id: i, value: i});
+           $scope.hour.push({id: i, value: i});
        }
 
-   status.mins = [];
+   $scope.mins = [];
    var j =1;
    for(j=1; j<4; j++)
        {
-           status.mins.push({id: j, value: j*15});
+           $scope.mins.push({id: j, value: j*15});
        }
 /*
 *Add the components into an array
 */
-     status.addDetails = function(){
-         status.display1 = true;
-         status.statusList.report.push({date1:status.date1,
-                                 project : status.project.name,
-                                 activity : status.activity.name,
-                                 workHour : status.hourWork+'h',
-                                 workMin : status.minsWork+'min.',
-                                 details : status.details
+     $scope.addDetails = function(){
+
+         $scope.display1 = true;
+         $scope.statusList.report.push({date1:$scope.date1,
+                                 project : $scope.project.name,
+                                 activity : $scope.activity.name,
+                                 workHour : $scope.hourWork+'h',
+                                 workMin : $scope.minsWork+'min.',
+                                 details : $scope.details
                              });
-                             console.log(status.statusList.report);
+
         var newarray = [];
-        for(i=0;i<status.statusList.report.length;i++){
-            newarray.push(status.statusList.report[i]);
+        for(i=0;i<$scope.statusList.report.length;i++){
+            newarray.push($scope.statusList.report[i]);
         }
-        status.statusList.report = newarray;
+        $scope.statusList.report = newarray;
         delete newarray;
         $("#statForm")[0].reset();
-     };
+    };
  });
