@@ -20,15 +20,24 @@
                 <div class="form">
                     <form ng-submit="status.addDetails()" id="statForm">
                     <span>
-                        <input type="date" placeholder="yyyy-mm-dd" max="{{status.statusList.date.max}}" min="{{status.statusList.date.min}}" ng-model="status.date" id="statusDate" required  >
+                        <select class="" ng-model="status.date1">
+                            <option value="" disabled selected>Select date</option>
+                            <option  ng-repeat = "date in status.date">{{date.title}}</option>
+                        </select>
                         <select class="projects" ng-model="status.project" required ng-options = "project as project.name for project in status.statusList.projects">
                         </select>
                         <select class="activity" ng-model="status.activity" required
                                 ng-options = "activity as activity.name for activity in status.statusList.activities">
 
                         </select>
-                        <input type="number" ng-model="status.hour" placeholder="Hour" required class="time" min="0" max="{{status.statusList.times.hourMax}}">
-                        <input type="number" ng-model="status.min" placeholder="Mins" required class="time" min="0" max="{{status.statusList.times.minMax}}" step="{{status.statusList.times.minStep}}">
+                        <select class="time" ng-model = "status.hourWork">
+                            <option value="" disabled selected>Hour</option>
+                            <option  ng-repeat = "hour in status.hour">{{hour.value}}</option>
+                        </select>
+                        <select class="time" ng-model = "status.minsWork">
+                            <option value="" disabled selected>Mins</option>
+                            <option  ng-repeat = "min in status.mins">{{min.value}}</option>
+                        </select>
                     </span>
 
                         <div>
