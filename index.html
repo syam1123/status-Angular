@@ -18,30 +18,30 @@
             <div ng-controller="DailyStatusReport as status">
                 <h2>Status Report</h2>
                 <div class="form">
-                    <form ng-submit="status.addDetails()" id="statForm">
+                    <form ng-submit="addDetails()" id="statForm">
                     <span>
-                        <select class="" ng-model="status.date1">
+                        <select class="" ng-model="date1">
                             <option value="" disabled selected>Select date</option>
-                            <option  ng-repeat = "date in status.date">{{date.title}}</option>
+                            <option  ng-repeat = "date in date">{{date.title}}</option>
                         </select>
-                        <select class="projects" ng-model="status.project" required ng-options = "project as project.name for project in status.statusList.projects">
+                        <select class="projects" ng-model="project" required ng-options = "project as project.name for project in statusList.projects">
                         </select>
-                        <select class="activity" ng-model="status.activity" required
-                                ng-options = "activity as activity.name for activity in status.statusList.activities">
+                        <select class="activity" ng-model="activity" required
+                                ng-options = "activity as activity.name for activity in statusList.activities">
 
                         </select>
-                        <select class="time" ng-model = "status.hourWork">
+                        <select class="time" ng-model = "hourWork">
                             <option value="" disabled selected>Hour</option>
-                            <option  ng-repeat = "hour in status.hour">{{hour.value}}</option>
+                            <option  ng-repeat = "hour in hour">{{hour.value}}</option>
                         </select>
-                        <select class="time" ng-model = "status.minsWork">
+                        <select class="time" ng-model = "minsWork">
                             <option value="" disabled selected>Mins</option>
-                            <option  ng-repeat = "min in status.mins">{{min.value}}</option>
+                            <option  ng-repeat = "min in mins">{{min.value}}</option>
                         </select>
                     </span>
 
                         <div>
-                            <textarea class="details" rows="5" ng-model="status.details"placeholder="Please enter the details" required></textarea>
+                            <textarea class="details" rows="5" ng-model="details"placeholder="Please enter the details" required></textarea>
                         </div>
                         <input type="submit" class="btn btn-success" value="submit">
                     </form>
@@ -49,7 +49,7 @@
                 <div class="results">
                     <h2>My History</h2>
                     <ul class="">
-                        <li ng-repeat="report in status.statusList.report">
+                        <li ng-repeat="report in statusList.report">
                             <div class="row">
                                 <div class="col2">
                                     <p>end-of-day</p>
